@@ -4,7 +4,7 @@
 #
 Name     : pypi-ipython_sql
 Version  : 0.4.0
-Release  : 42
+Release  : 43
 URL      : https://files.pythonhosted.org/packages/f9/6a/286fa8e95db0567b50e2e207f9e45d65223b51b43fc5614729e4275c074b/ipython-sql-0.4.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f9/6a/286fa8e95db0567b50e2e207f9e45d65223b51b43fc5614729e4275c074b/ipython-sql-0.4.0.tar.gz
 Summary  : RDBMS access via IPython
@@ -13,8 +13,8 @@ License  : MIT
 Requires: pypi-ipython_sql-license = %{version}-%{release}
 Requires: pypi-ipython_sql-python = %{version}-%{release}
 Requires: pypi-ipython_sql-python3 = %{version}-%{release}
-Requires: SQLAlchemy
-Requires: ipython_genutils
+Requires: pypi(ipython_genutils)
+Requires: pypi(sqlalchemy)
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(ipython)
 BuildRequires : pypi(ipython_genutils)
@@ -73,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641596814
+export SOURCE_DATE_EPOCH=1641654300
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
