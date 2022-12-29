@@ -4,7 +4,7 @@
 #
 Name     : pypi-ipython_sql
 Version  : 0.4.0
-Release  : 51
+Release  : 52
 URL      : https://files.pythonhosted.org/packages/f9/6a/286fa8e95db0567b50e2e207f9e45d65223b51b43fc5614729e4275c074b/ipython-sql-0.4.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f9/6a/286fa8e95db0567b50e2e207f9e45d65223b51b43fc5614729e4275c074b/ipython-sql-0.4.0.tar.gz
 Summary  : RDBMS access via IPython
@@ -22,6 +22,9 @@ BuildRequires : pypi(prettytable)
 BuildRequires : pypi(six)
 BuildRequires : pypi(sqlalchemy)
 BuildRequires : pypi(sqlparse)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 Patch1: 0001-Add-missing-NEWS.rst-file.patch
 Patch2: 0002-Unpin-prettytable-dependency.patch
 
@@ -76,12 +79,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656526781
+export SOURCE_DATE_EPOCH=1672282774
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -98,7 +101,7 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-ipython_sql
-cp %{_builddir}/ipython-sql-0.4.0/LICENSE %{buildroot}/usr/share/package-licenses/pypi-ipython_sql/1c9900f6ca015de4cf1c4f0ef5b9be5361c90a15
+cp %{_builddir}/ipython-sql-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-ipython_sql/1c9900f6ca015de4cf1c4f0ef5b9be5361c90a15 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
