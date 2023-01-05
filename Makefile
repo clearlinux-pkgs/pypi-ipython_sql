@@ -1,5 +1,5 @@
 PKG_NAME := pypi-ipython_sql
-URL = https://files.pythonhosted.org/packages/f9/6a/286fa8e95db0567b50e2e207f9e45d65223b51b43fc5614729e4275c074b/ipython-sql-0.4.0.tar.gz
+URL = https://files.pythonhosted.org/packages/6f/13/7020cf03f0f517323ab50f9908ba8116ecd0684e769510cf8789babfe054/ipython-sql-0.4.1.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
